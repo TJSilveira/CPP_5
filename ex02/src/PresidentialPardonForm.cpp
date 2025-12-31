@@ -2,21 +2,39 @@
 #include "../includes/Bureaucrat.hpp"
 
 	// Constructors
-PresidentialPardonForm::PresidentialPardonForm(void): AForm("Default Name", 72, 45)
+PresidentialPardonForm::PresidentialPardonForm(void):
+	AForm("Presidential Pardon", 25, 5),
+	_target("Default Presidential Pardon")
 {
 	std::cout << "[PresidentialPardonForm] Default constructor called. " <<
 	 			this <<
+				"Target: " << this->_target <<
 				std::endl;
 	return;
 }
 
-PresidentialPardonForm::PresidentialPardonForm(const std::string& name): AForm(name, 72, 45)
+PresidentialPardonForm::PresidentialPardonForm(const std::string& target):
+	AForm("Presidential Pardon", 25, 5),
+	_target(target)
 {
 	std::cout << "[PresidentialPardonForm] Name constructor called. " <<
 	 			this <<
+				"Target: " << this->_target <<
 			std::endl;
 	return;
 }
+
+PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& other):
+	AForm("Presidential Pardon", 25, 5),
+	_target(other.getTarget())
+{
+	std::cout << "[PresidentialPardonForm] Copy constructor called. " <<
+				this <<
+				"Target: " << this->_target <<
+				std::endl;
+	return;
+}
+
 
 	// Destructor
 PresidentialPardonForm::~PresidentialPardonForm(void)
@@ -27,7 +45,7 @@ PresidentialPardonForm::~PresidentialPardonForm(void)
 	// Methods
 void	PresidentialPardonForm::execute(Bureaucrat const & executor) const
 {
-	if (executor.getGrade() > this->_executionGrade)
+	if (executor.getGrade() > this->getExecutionGrade())
 	{
 		throw AForm::GradeTooLowException();
 	}
@@ -36,7 +54,12 @@ void	PresidentialPardonForm::execute(Bureaucrat const & executor) const
 		throw AForm::FormNotSignedException();
 	}
 
-	std::cout << executor.getName() << "has been pardoned by Zaphod Beeblebrox." << std::endl;
+	std::cout << this->getTarget() << " has been pardoned by Zaphod Beeblebrox." << std::endl;
+}
+
+const std::string	PresidentialPardonForm::getTarget(void) const
+{
+	return(this->_target);
 }
 
 	// Overloaded Operator

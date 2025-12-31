@@ -8,13 +8,22 @@ class Bureaucrat;
 
 class PresidentialPardonForm: public AForm
 {
+private:
+	const std::string _target;
+
+	// Moved here since in the subject it states that the only constructor 
+	// that should be use is the one that gets target as a parameter 
+	PresidentialPardonForm(void);
 public:
 	// Constructors
-	PresidentialPardonForm(void);
-	PresidentialPardonForm(const std::string& name);
+	PresidentialPardonForm(const std::string& target);
+	PresidentialPardonForm(const PresidentialPardonForm& other);
 
 	// Destructor
 	~PresidentialPardonForm(void);
+
+	// Getter
+	const std::string	getTarget(void) const;
 
 	// Methods
 	void	execute(Bureaucrat const & executor) const;

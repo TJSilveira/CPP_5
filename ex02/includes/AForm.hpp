@@ -17,9 +17,9 @@ public:
 	AForm(const AForm& other);
 	AForm(const std::string& name, const int signing_grade, const int execution_grade);
 	AForm(const std::string& name);
-
+	
 	// Destructor
-	~AForm(void);
+	virtual ~AForm(void);
 
 	// Overloaded Operator
 	AForm&		operator=(const AForm& other);

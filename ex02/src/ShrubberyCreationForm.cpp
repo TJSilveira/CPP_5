@@ -2,7 +2,9 @@
 #include "../includes/Bureaucrat.hpp"
 
 	// Constructors
-ShrubberyCreationForm::ShrubberyCreationForm(void): AForm("Default Name", 145, 137)
+ShrubberyCreationForm::ShrubberyCreationForm(void): 
+	AForm("Shrubbery Creation Form", 145, 137),
+	_target("Default")
 {
 	std::cout << "[Form] Default constructor called. " <<
 	 			this <<
@@ -10,7 +12,9 @@ ShrubberyCreationForm::ShrubberyCreationForm(void): AForm("Default Name", 145, 1
 	return;
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(const std::string& name): AForm(name, 145, 137)
+ShrubberyCreationForm::ShrubberyCreationForm(const std::string& target):
+	AForm("Shrubbery Creation Form", 145, 137),
+	_target(target)
 {
 	std::cout << "[Form] Name constructor called. " <<
 	 			this <<
@@ -18,10 +22,27 @@ ShrubberyCreationForm::ShrubberyCreationForm(const std::string& name): AForm(nam
 	return;
 }
 
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& other):
+	AForm("Shrubbery Creation Form", 145, 137),
+	_target(other.getTarget())
+{
+	std::cout << "[ShrubberyCreationForm] Copy constructor called. " <<
+				this <<
+				"Target: " << this->_target <<
+				std::endl;
+	return;
+}
+
 	// Destructor
 ShrubberyCreationForm::~ShrubberyCreationForm(void)
 {
 	return;
+}
+
+	// Getter
+const std::string	ShrubberyCreationForm::getTarget(void) const
+{
+	return(this->_target);
 }
 
 	// Methods
@@ -35,7 +56,7 @@ void	ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 	{
 		throw AForm::FormNotSignedException();
 	}
-	std::string filename = this->getName() + "_shrubbery";
+	std::string filename = this->getTarget() + "_shrubbery";
 	std::ofstream myfile(filename.c_str());
 	std::string tree = 
 	"               &&& &&  & &&\n          && &/ /&/|& ()|/ @, &&\n          &/ /(/&/&||/& /_/)_&/_&\n       &() &/ /&|()|/&/  '%\" & ()\n      &_/_&&_/ |& |&&/&__%_/_& &&\n    &&   && & &| &| /& & % ()& /&&\n     ()&_---()&/&/|&&-&&--%---()~\n         &&     /|||\n                |||\n                |||\n                |||\n          , -=-~  .-^- _\n";

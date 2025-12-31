@@ -2,7 +2,9 @@
 #include "../includes/Bureaucrat.hpp"
 
 	// Constructors
-RobotomyRequestForm::RobotomyRequestForm(void): AForm("Default Name", 72, 45)
+RobotomyRequestForm::RobotomyRequestForm(void): 
+	AForm("Robotomy Request Form", 72, 45),
+	_target("Default")
 {
 	std::cout << "[RobotomyRequestForm] Default constructor called. " <<
 	 			this <<
@@ -10,7 +12,9 @@ RobotomyRequestForm::RobotomyRequestForm(void): AForm("Default Name", 72, 45)
 	return;
 }
 
-RobotomyRequestForm::RobotomyRequestForm(const std::string& name): AForm(name, 72, 45)
+RobotomyRequestForm::RobotomyRequestForm(const std::string& target):
+	AForm("Robotomy Request Form", 72, 45),
+	_target(target)
 {
 	std::cout << "[RobotomyRequestForm] Name constructor called. " <<
 	 			this <<
@@ -18,10 +22,27 @@ RobotomyRequestForm::RobotomyRequestForm(const std::string& name): AForm(name, 7
 	return;
 }
 
+RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& other):
+	AForm("Robotomy Request Form", 72, 45),
+	_target(other.getTarget())
+{
+	std::cout << "[RobotomyRequestForm] Copy constructor called. " <<
+				this <<
+				"Target: " << this->_target <<
+				std::endl;
+	return;
+}
+
 	// Destructor
 RobotomyRequestForm::~RobotomyRequestForm(void)
 {
 	return;
+}
+
+	// Getter
+const std::string	RobotomyRequestForm::getTarget(void) const
+{
+	return (this->_target);
 }
 
 	// Methods
@@ -38,7 +59,7 @@ void	RobotomyRequestForm::execute(Bureaucrat const & executor) const
 
 	std::cout << "*drill noises* BBBBBBBBBBBBBBRRRRRRRRRRRRRRRRRRHHHHHHHHHHHHHHHHH *drill noises*" << std::endl;
 	if (time(NULL) % 2)
-		std::cout << executor.getName() << "has been robotomized successfully" << std::endl;
+		std::cout << this->getTarget() << "has been robotomized successfully" << std::endl;
 	else
 		std::cout << "Robotomized Failed" << std::endl;
 }

@@ -8,6 +8,7 @@ class Bureaucrat
 private:
 	const std::string	_name;
 	int					_grade;
+	void			setGrade(int grade);
 public:
 	// Constructors
 	Bureaucrat(void);
@@ -27,7 +28,6 @@ public:
 	int				getGrade(void) const;
 	
 	// public methods
-	void			setGrade(int grade);
 	void			incrementGrade();
 	void			decrementGrade();
 	void			signForm(AForm& form);

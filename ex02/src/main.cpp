@@ -18,9 +18,9 @@ int main(void)
 	std::cout << "\n\n";
 
 	std::cout << "[ShrubberyCreationForm section]" << std::endl;
-	ShrubberyCreationForm f1 = ShrubberyCreationForm();
-	ShrubberyCreationForm f2 = ShrubberyCreationForm("F2");
-	ShrubberyCreationForm f4 = ShrubberyCreationForm("Fz");
+	ShrubberyCreationForm f1 = ShrubberyCreationForm("Target 1");
+	ShrubberyCreationForm f2 = ShrubberyCreationForm("Target 2");
+	ShrubberyCreationForm f4 = ShrubberyCreationForm("Target 3");
 
 	b2.signForm(f2);
 	b1.signForm(f1);
@@ -29,9 +29,9 @@ int main(void)
 	std::cout << "\n\n";
 
 	std::cout << "[RobotomyRequestForm section]" << std::endl;
-	RobotomyRequestForm Robotomyf1 = RobotomyRequestForm();
-	RobotomyRequestForm Robotomyf2 = RobotomyRequestForm("F2");
-	RobotomyRequestForm Robotomyf3 = RobotomyRequestForm("Fz");
+	RobotomyRequestForm Robotomyf1 = RobotomyRequestForm("Target 1");
+	RobotomyRequestForm Robotomyf2 = RobotomyRequestForm("Target 2");
+	RobotomyRequestForm Robotomyf3 = RobotomyRequestForm("Target 3");
 
 	b2.signForm(Robotomyf2);
 	b1.signForm(Robotomyf1);
@@ -40,9 +40,9 @@ int main(void)
 	std::cout << "\n\n";
 
 	std::cout << "[PresidentialPardonForm section]" << std::endl;
-	PresidentialPardonForm Presidentialf1 = PresidentialPardonForm();
-	PresidentialPardonForm Presidentialf2 = PresidentialPardonForm("F2");
-	PresidentialPardonForm Presidentialf3 = PresidentialPardonForm("Fz");
+	PresidentialPardonForm Presidentialf1 = PresidentialPardonForm("Target 1");
+	PresidentialPardonForm Presidentialf2 = PresidentialPardonForm("Target 2");
+	PresidentialPardonForm Presidentialf3 = PresidentialPardonForm("Target 3");
 
 	b2.signForm(Presidentialf2);
 	b1.signForm(Presidentialf1);
@@ -152,7 +152,10 @@ int main(void)
 	// Bureaucrat's new function
 	try
 	{
+		b2.executeForm(f1);
 		b1.executeForm(f1);
+		b2.signForm(f1);
+		b2.executeForm(f1);
 	}
 	catch(const std::exception& e)
 	{

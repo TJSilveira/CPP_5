@@ -9,6 +9,7 @@ int main(void)
 	
 	b4 = b3;
 	b4.incrementGrade();
+	b2.decrementGrade();
 	std::cout << &b1 << std::endl << &b2 << std::endl << &b3 << std::endl << &b4 << std::endl;
 
 	try
@@ -27,5 +28,21 @@ int main(void)
 	catch(const Bureaucrat::GradeTooLowException& e)
 	{
 		std::cerr << "We are inside the SECOND catch term: " << e.what() << '\n';
+	}
+	try
+	{
+		Bureaucrat b5 = Bureaucrat("Anibal", 200);
+	}
+	catch(const Bureaucrat::GradeTooLowException& e)
+	{
+		std::cerr << "We are inside the THIRD catch term: " << e.what() << '\n';
+	}
+	try
+	{
+		Bureaucrat b5 = Bureaucrat("Anibal", -1);
+	}
+	catch(const Bureaucrat::GradeTooHighException& e)
+	{
+		std::cerr << "We are inside the FOURTH catch term: " << e.what() << '\n';
 	}
 }

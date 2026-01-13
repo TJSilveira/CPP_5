@@ -91,7 +91,21 @@ void	AForm::beSigned(const Bureaucrat& signer)
 	{
 		throw AForm::GradeTooLowException();
 	}
+	std::cout << "Bureaucrat "<< signer.getName() << " signed the form "<< this->getName() << std::endl;
 	this->_signed = true;
+}
+
+void	AForm::execute(Bureaucrat const & executor) const
+{
+	if (executor.getGrade() > this->getExecutionGrade())
+	{
+		throw AForm::GradeTooLowException();
+	}
+	if (this->_signed == false)
+	{
+		throw AForm::FormNotSignedException();
+	}
+	this->doAction(executor);
 }
 
 const char *AForm::GradeTooLowException::what(void) const throw()

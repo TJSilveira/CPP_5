@@ -21,13 +21,13 @@ Form::Form(const Form& other): _name(other.getName() + "_copy"), _signed(other.g
 
 Form::Form(const std::string& name, const int signing_grade, const int execution_grade): _name(name), _signed(false), _signingGrade(signing_grade), _executionGrade(execution_grade)
 {
-	std::cout << "[Form] Parameterized constructor called. " <<
-	 			this <<
-				std::endl;
 	if (signing_grade > 150 || execution_grade > 150)
 		throw Form::GradeTooLowException();
 	else if (signing_grade < 1 || execution_grade < 1)
 		throw Form::GradeTooHighException();
+	std::cout << "[Form] Parameterized constructor called. " <<
+	 			this <<
+				std::endl;
 	return;
 }
 
@@ -91,6 +91,7 @@ void	Form::beSigned(const Bureaucrat& signer)
 	{
 		throw Form::GradeTooLowException();
 	}
+	std::cout << "Bureaucrat "<< signer.getName() << " signed the form "<< this->getName() << std::endl;
 	this->_signed = true;
 }
 

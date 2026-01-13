@@ -5,6 +5,7 @@
 
 int main(void)
 {
+	std::srand(time(0));
 	std::cout << "[Bureaucrat section]" << std::endl;
 	Bureaucrat b1 = Bureaucrat("Tiago", 150);
 	Bureaucrat b2 = Bureaucrat(2);
@@ -86,7 +87,7 @@ int main(void)
 		std::cerr << "We are inside the FOURTH catch term: " << e.what() << '\n';
 	}
 
-	// Shrubbery Section
+	std::cout << "\n[Exceptions section - Shrubbery Section]\n";
 	try
 	{
 		f2.execute(b4);
@@ -107,7 +108,7 @@ int main(void)
 		std::cerr << "We are inside the SIXTH catch term: " << e.what() << '\n';
 	}
 
-	// Robotomy Section
+	std::cout << "\n[Exceptions section - Robotomy Section]\n";
 	try
 	{
 		Robotomyf2.execute(b4);
@@ -119,7 +120,9 @@ int main(void)
 	try
 	{
 		b2.signForm(Robotomyf2);
+		b2.signForm(Robotomyf3);
 		Robotomyf2.execute(b2);
+		Robotomyf3.execute(b2);
 		Robotomyf2.execute(b1);
 		Robotomyf2.execute(b4);
 	}
@@ -128,7 +131,7 @@ int main(void)
 		std::cerr << "We are inside the EIGHTH catch term: " << e.what() << '\n';
 	}
 
-	// Presidential Section
+	std::cout << "\n[Exceptions section - Presidential Section]\n";
 	try
 	{
 		Presidentialf2.execute(b4);
@@ -140,7 +143,9 @@ int main(void)
 	try
 	{
 		b2.signForm(Presidentialf2);
+		b2.signForm(Presidentialf3);
 		Presidentialf2.execute(b2);
+		Presidentialf3.execute(b2);
 		Presidentialf2.execute(b1);
 		Presidentialf2.execute(b4);
 	}

@@ -26,7 +26,8 @@ public:
 	const std::string	getTarget(void) const;
 
 	// Methods
-	void	execute(Bureaucrat const & executor) const;
+	void	doAction(Bureaucrat const & executor) const;
+	// void	execute(Bureaucrat const & executor) const;
 
 	// Overloaded Operator
 	PresidentialPardonForm&		operator=(const PresidentialPardonForm& other);

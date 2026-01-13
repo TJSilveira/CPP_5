@@ -21,13 +21,13 @@ AForm::AForm(const AForm& other): _name(other.getName() + "_copy"), _signed(othe
 
 AForm::AForm(const std::string& name, const int signing_grade, const int execution_grade): _name(name), _signed(false), _signingGrade(signing_grade), _executionGrade(execution_grade)
 {
-	std::cout << "[Form] Parameterized constructor called. " <<
-	 			this <<
-				std::endl;
 	if (signing_grade > 150 || execution_grade > 150)
 		throw AForm::GradeTooLowException();
 	else if (signing_grade < 1 || execution_grade < 1)
 		throw AForm::GradeTooHighException();
+	std::cout << "[Form] Parameterized constructor called. " <<
+	 			this <<
+				std::endl;
 	return;
 }
 
@@ -91,8 +91,23 @@ void	AForm::beSigned(const Bureaucrat& signer)
 	{
 		throw AForm::GradeTooLowException();
 	}
+	std::cout << "Bureaucrat "<< signer.getName() << " signed the form "<< this->getName() << std::endl;
 	this->_signed = true;
 }
+
+void	AForm::execute(Bureaucrat const & executor) const
+{
+	if (executor.getGrade() > this->getExecutionGrade())
+	{
+		throw AForm::GradeTooLowException();
+	}
+	if (this->_signed == false)
+	{
+		throw AForm::FormNotSignedException();
+	}
+	this->doAction(executor);
+}
+
 
 const char *AForm::GradeTooLowException::what(void) const throw()
 {

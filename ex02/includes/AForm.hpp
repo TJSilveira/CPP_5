@@ -32,7 +32,8 @@ public:
 
 	// Methods
 	void			beSigned(const Bureaucrat& signer);
-	virtual	void	execute(Bureaucrat const & executor) const =0;
+	void			execute(Bureaucrat const & executor) const;
+	virtual void	doAction(Bureaucrat const & executor) const = 0;
 
 	// Exceptions
 	class GradeTooLowException : public std::exception

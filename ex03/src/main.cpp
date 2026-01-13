@@ -6,6 +6,7 @@
 
 int main(void)
 {
+	std::srand(time(0));
 	std::cout << "[Bureaucrat section]" << std::endl;
 	Bureaucrat b1 = Bureaucrat("Tiago", 150);
 	Bureaucrat b2 = Bureaucrat(2);
@@ -35,7 +36,7 @@ int main(void)
 
 	b2.signForm(f2);
 	b1.signForm(f1);
-	*f4 = f2;
+	// *f4 = f2;
 	std::cout << &f1 << std::endl << &f2 << std::endl << &f4 << std::endl;
 	std::cout << "\n\n";
 

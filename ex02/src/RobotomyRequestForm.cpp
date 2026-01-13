@@ -46,22 +46,15 @@ const std::string	RobotomyRequestForm::getTarget(void) const
 }
 
 	// Methods
-void	RobotomyRequestForm::execute(Bureaucrat const & executor) const
+void	RobotomyRequestForm::doAction(Bureaucrat const & executor) const
 {
-	if (executor.getGrade() > this->_executionGrade)
-	{
-		throw AForm::GradeTooLowException();
-	}
-	if (this->_signed == false)
-	{
-		throw AForm::FormNotSignedException();
-	}
-
+    int randomNum = std::rand();
 	std::cout << "*drill noises* BBBBBBBBBBBBBBRRRRRRRRRRRRRRRRRRHHHHHHHHHHHHHHHHH *drill noises*" << std::endl;
-	if (time(NULL) % 2)
-		std::cout << this->getTarget() << "has been robotomized successfully" << std::endl;
+	if (randomNum % 2)
+		std::cout << this->getTarget() << " has been robotomized successfully!" << std::endl;
 	else
 		std::cout << "Robotomized Failed" << std::endl;
+	std::cout << executor.getName() << " executed " << this->getName() << std::endl;
 }
 
 	// Overloaded Operator
